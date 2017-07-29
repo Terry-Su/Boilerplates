@@ -24,6 +24,7 @@
     "react-dom": "^15.4.1",
     "redux": "^3.7.2",
     "sass-loader": "^4.1.1",
+    "node-sass": "^4.5.3",
     "style-loader": "^0.13.1",
     "webpack": "^3.0.0"
   }
