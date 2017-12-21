@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@types/jasmine@^2.8.2":
+  version "2.8.2"
+  resolved "https://registry.npmjs.org/@types/jasmine/-/jasmine-2.8.2.tgz#6ae4d8740c0da5d5a627df725b4eed71b8e36668"
+
 ansi-gray@^0.1.1:
   version "0.1.1"
   resolved "https://registry.npmjs.org/ansi-gray/-/ansi-gray-0.1.1.tgz#2962cf54ec9792c48510a3deb524436861ef7251"
