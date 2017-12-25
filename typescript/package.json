@@ -5,7 +5,7 @@
     "typescript": "^2.6.2"
   },
   "scripts": {
-    "start": "gulp",
+    "start": "gulp --gulpfile gulpfile-server.js",
     "test": "jasmine"
   },
   "name": "typescript_project",
