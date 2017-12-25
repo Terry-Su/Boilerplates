@@ -71,15 +71,14 @@ function main() {
 	} catch (e) {
 		watcher.remove()
 		watcher.end()
-		watcher = gulp.watch( watchingSrcGlob, main )
+		watcher = gulp.watch( watchingSrcGlob )
+		watcher.on( 'change', main )
 	}
 
 }
-try {
-	watcher = gulp.watch( watchingSrcGlob, main )
-} catch (e) {
-	console.log( 'watcher error!' )
-}
+
+watcher = gulp.watch( watchingSrcGlob )
+watcher.on( 'change', main )
 
 
 gulp.task( "default", () => {
