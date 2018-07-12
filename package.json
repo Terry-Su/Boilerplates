@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-   
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Terry-Su/Templates.git"
@@ -16,6 +14,8 @@
   "bugs": {
     "url": "https://github.com/Terry-Su/Templates/issues"
   },
-  "homepage": "https://github.com/Terry-Su/Templates#readme"
-  
+  "homepage": "https://github.com/Terry-Su/Templates#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^3.2.0"
+  }
 }
