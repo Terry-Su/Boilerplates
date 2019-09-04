@@ -5,10 +5,10 @@ module.exports = {
     es6: true,
     node: true
   },
+  parser: "typescript-eslint-parser",
   parserOptions: {
     sourceType: "module"
   },
-  extends: ["eslint:recommended", "plugin:react/recommended"],
   rules: {
     "operator-linebreak": ["warn", "after"],
     semi: [
