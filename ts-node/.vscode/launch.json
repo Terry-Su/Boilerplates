@@ -4,20 +4,35 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+    // {
+    //   "type": "node",
+    //   "request": "launch",
+    //   "name": "Launch Program",
+    //   "args": [
+    //     "node_modules/jasmine/bin/jasmine",
+    //   ],
+    //   "runtimeArgs": ["-r", "ts-node/register"],
+    //   "cwd": "${workspaceRoot}",
+    //   "protocol": "inspector",
+    //   "env": {
+    //     "NODE_ENV": "development"
+    //   }
+    // },
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Mocha Tests",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
       "args": [
-        "node_modules/jasmine/bin/jasmine",
+          "--timeout",
+          "999999",
+          "test/**/*.spec.ts",
+          "--colors",
       ],
       "runtimeArgs": ["-r", "ts-node/register"],
-      "cwd": "${workspaceRoot}",
-      "protocol": "inspector",
-      "env": {
-        "NODE_ENV": "development"
-      }
-    }
+      "internalConsoleOptions": "openOnSessionStart",
+      // "port": 9299
+  },
 
   ]
 }
