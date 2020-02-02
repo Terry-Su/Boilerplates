@@ -17,6 +17,6 @@ export default {
 </script>
 <style scoped>
 div {
-  color: deepskyblue;
+  font-weight: bold;
 }
 </style>
