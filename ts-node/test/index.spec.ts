@@ -1,16 +1,16 @@
-import { hello } from "../src/index"
-const assert = require( 'assert' )
+import { hello } from '../src/index'
+const assert = require('assert')
 
-describe( "Test", function() {
-  this.timeout( 20000 )
+describe('Test', function () {
+  this.timeout(2000000)
 
-  it( "Sync unit ", () => {
+  it('Sync unit ', () => {
     hello()
-  } )
-  it( "Async unit ", done => {
-    setTimeout( () => {
+  })
+  it('Async unit ', done => {
+    setTimeout(() => {
       hello()
       done()
-    }, 1000 )
-  } )
-} )
+    }, 1000)
+  })
+})
