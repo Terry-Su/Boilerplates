@@ -20,7 +20,8 @@
   },
   "nodemonConfig": {
     "watch": [
-      "src/**/*"
+      "src/**/*",
+      "test/**/*"
     ],
     "ignore": [],
     "exec": "npm run test"

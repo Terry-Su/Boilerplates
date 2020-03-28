@@ -1,16 +1,14 @@
-import { hello } from '../src/index'
 const assert = require('assert')
 
 describe('Test', function () {
   this.timeout(2000000)
 
   it('Sync unit ', () => {
-    hello()
   })
   it('Async unit ', done => {
+    import('../src/index')
     setTimeout(() => {
-      hello()
-      done()
+      // done()
     }, 1000)
   })
 })
