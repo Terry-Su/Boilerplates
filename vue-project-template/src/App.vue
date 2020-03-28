@@ -1,14 +1,15 @@
 <template>
   <div>
-    App
+    App1
   </div>
 </template>
 <script>
-
 export default {
   name: 'App',
   props: {},
-  data () { return {} },
+  data () {
+    return { }
+  },
   computed: {},
   watch: {},
   mounted () {},
