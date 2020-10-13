@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    Hello Express Template!
+    <script>
+        const formData = new FormData()
+        formData.append('name', 'foo')
+        // {name: 'foo'}
+        request({
+            url: '/test',
+            method: 'POST',
+            data: "name=foo&count=100",
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            onLoad(response) {
+                console.log(response)
+            }
+        })
+        function request({ url, method = 'post', headers = {}, data, onUploadProgress, onLoad }) {
+            const xhr = new XMLHttpRequest()
+            xhr.onload = e => onLoad(e.target.response)
+            xhr.upload.onprogress = e => onUploadProgress && onUploadProgress(e)
+            xhr.open(method, url)
+            for (let key in headers) {
+                xhr.setRequestHeader(key, headers[key])
+            }
+            xhr.send(data)
+        }
+    </script>
+</body>
+
+</html>
