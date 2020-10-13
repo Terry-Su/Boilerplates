@@ -34,5 +34,5 @@ app.post("/test", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`listening on https://localhost:${PORT}`);
+  console.log(`listening on http://localhost:${PORT}`);
 });
