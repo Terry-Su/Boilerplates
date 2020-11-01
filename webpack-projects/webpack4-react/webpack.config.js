@@ -1,11 +1,15 @@
 var path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: './src/entry.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
+  },
+  devServer: {
+    historyApiFallback: true
   },
   module: {
     rules: [
@@ -45,6 +49,7 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, 'src/index.html')
-    })
+    }),
+    new CleanWebpackPlugin()
   ]
 }
