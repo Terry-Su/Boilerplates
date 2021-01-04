@@ -6,7 +6,7 @@ describe('Test', function () {
   it('Sync unit ', () => {
   })
   it('Async unit ', done => {
-    import('../src/index')
+    require('../src/index')
     setTimeout(() => {
       // done()
     }, 1000)

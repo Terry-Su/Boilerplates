@@ -1,9 +1,9 @@
 import React from 'react'
 import App from './App'
-import {hot} from 'react-hot-loader/root'
+import { hot } from 'react-hot-loader/root'
 
 function HotApp() {
-    return <App/>
+  return <App />
 }
 
 export default hot(HotApp)

@@ -4,6 +4,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
+  devtool: 'sourcemap',
   entry: './src/entry.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -15,7 +16,6 @@ module.exports = {
   module: {
     rules: [
       {
-        // test: /\.(ts|tsx|js|jsx)$/,
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         use: [
@@ -49,7 +49,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx']
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    alias: {
+      '@src': path.resolve(__dirname, 'src')
+    }
   },
   plugins: [
     new HtmlWebPackPlugin({

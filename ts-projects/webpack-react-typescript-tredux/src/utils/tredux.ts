@@ -1,6 +1,6 @@
 import React from "react";
 import { createStore, combineReducers } from "redux";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 let currentModels = [];
 /** @type {import("redux").Store} */
 let currentStore = null;
@@ -30,11 +30,12 @@ export const initModels = (models) => {
 
   currentStore = createStore(rootReducer);
 
-  const EnhancedProvider = ({ children = [], ...rest }) => (
-    <Provider store={currentStore} {...rest}>
-      {children}
-    </Provider>
-  );
+  const EnhancedProvider = ({ children, ...rest }) => (
+  //   <Provider store={currentStore} {...rest}>
+  //   {children}
+  // </Provider>
+    React.createElement(Provider, { store: currentStore, ...rest }, children)
+  )
   return EnhancedProvider;
 };
 
@@ -51,7 +52,7 @@ export const dispatchModel = (modelName, methodName, ...args) => {
   } else {
     const model = currentModels.find((model) => model.name === modelName);
     return new Promise((resolve, reject) => {
-      setTimeout(async () => {
+      const fn = async () => {
         if (model && model.methods && model.methods[methodName]) {
           const state = getModelState(model.name);
           const update = (first, second) => {
@@ -67,11 +68,13 @@ export const dispatchModel = (modelName, methodName, ...args) => {
             })
           }
           const dispatch = (methodName, ...args) => dispatchModel(modelName, methodName, ...args)
-          const res = await model.methods[methodName]({ state, update, dispatch }, ...args);
+          const getState = () => currentStore.getState()[modelName]
+          const res = await model.methods[methodName]({ state, update, dispatch, getState }, ...args);
           resolve(res);
         }
-        resolve();
-      }, 0);
+        resolve(undefined);
+      }
+      if (window.queueMicrotask) { window.queueMicrotask(fn) } else { setTimeout(fn, 0) }
     });
   }
   return Promise.resolve();
@@ -104,3 +107,18 @@ function modelToReducer(model) {
     return state;
   };
 }
+
+export const useModelState = (modelName, stateKeys) => useSelector(state => {
+  const res = {}
+  for (const key of stateKeys) {
+    res[key] = state[modelName][key]
+  }
+  return res
+})
+
+export const getModelHelpers = modelName => ({
+  useModelState: stateKeys => useModelState(modelName, stateKeys),
+  updateModel: partialState => dispatchModel(modelName, 'change', partialState),
+  dispatchModel: (methodName, ...args) => dispatchModel(modelName, methodName, ...args),
+  getModelState: () => getModelState(modelName)
+})
