@@ -124,6 +124,6 @@ export const getModelHelpers = <State, Methods>(modelName: string) => ({
 export type MethodFirstParamFactory<State, Methods> = {
   state: State,
   update?: (partialState: Partial<State>) => void
-  dispatch?: <MethodsKey extends keyof Methods>(methodName: MethodsKey, ...args: ShiftAction<Parameters<Methods[MethodsKey]>>),
+  dispatch?: <MethodsKey extends keyof Methods>(methodName: MethodsKey, ...args: ShiftAction<Parameters<Methods[MethodsKey]>>) => void,
   getState: () => State
 }

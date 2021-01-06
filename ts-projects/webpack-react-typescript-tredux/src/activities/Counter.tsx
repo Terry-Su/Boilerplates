@@ -5,7 +5,7 @@ export default function Counter() {
   const {count} = useModelCounterState(['count'])
   useEffect(() => {
     updateModelCounter({ count })
-  })
+  }, [])
   return <div>
     <div>Count: {count}</div>
     <div>
