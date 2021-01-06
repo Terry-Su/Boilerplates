@@ -10,7 +10,7 @@ export default function Counter() {
     <div>Count: {count}</div>
     <div>
       <button onClick={() => dispatchModelCounter('add', 1)}>Add</button>
-      <button onClick={() => dispatchModelCounter('subtract', 1)}>subtract</button>
+      <button onClick={() => dispatchModelCounter('subtract', 1)}>Subtract</button>
     </div>
   </div>
 }
