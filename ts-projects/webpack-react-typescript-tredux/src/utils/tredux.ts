@@ -31,9 +31,6 @@ export const initModels = (models) => {
   currentStore = createStore(rootReducer);
 
   const EnhancedProvider = ({ children, ...rest }) => (
-  //   <Provider store={currentStore} {...rest}>
-  //   {children}
-  // </Provider>
     React.createElement(Provider, { store: currentStore, ...rest }, children)
   )
   return EnhancedProvider;
@@ -108,17 +105,25 @@ function modelToReducer(model) {
   };
 }
 
-export const useModelState = (modelName, stateKeys) => useSelector(state => {
-  const res = {}
+export const useModelState = <State, StateKey extends keyof State>(modelName: string, stateKeys: StateKey[]): {[key in StateKey]: State[key] } => useSelector(state => {
+  const res: any = {}
   for (const key of stateKeys) {
     res[key] = state[modelName][key]
   }
   return res
 })
 
-export const getModelHelpers = modelName => ({
-  useModelState: stateKeys => useModelState(modelName, stateKeys),
-  updateModel: partialState => dispatchModel(modelName, 'change', partialState),
-  dispatchModel: (methodName, ...args) => dispatchModel(modelName, methodName, ...args),
-  getModelState: () => getModelState(modelName)
+export const getModelHelpers = <State, Methods>(modelName: string) => ({
+  useModelState: <StateKey extends keyof State>(stateKeys: StateKey[]): {[key in StateKey]: State[key] } => useModelState(modelName, stateKeys),
+  updateModel: (partialState: Partial<State>) => dispatchModel(modelName, 'change', partialState),
+  dispatchModel: <MethodsKey extends keyof Methods>(methodsName: MethodsKey, ...args: ShiftAction<Parameters<Methods[MethodsKey]>>) => dispatchModel(modelName, methodsName, ...args),
+  getModelState: ():State => getModelState(modelName)
 })
+
+
+export type MethodFirstParamFactory<State, Methods> = {
+  state: State,
+  update?: (partialState: Partial<State>) => void
+  dispatch?: <MethodsKey extends keyof Methods>(methodName: MethodsKey, ...args: ShiftAction<Parameters<Methods[MethodsKey]>>),
+  getState: () => State
+}

@@ -1,10 +1,17 @@
+import { MethodFirstParamFactory } from "@src/utils/tredux"
+
 export class CounterState {
-  count =  0
+  count: number =  0
+  name: string = 'Counter'
 }
 
+type MethodFirstParam = MethodFirstParamFactory<CounterState, CounterMethods>
+
 export class CounterMethods {
-  add = ({update, state}) => update({count: state.count + 1 })
-  subtract = ({update, state}) => update({count: state.count - 1 })
+  add = ({update, state, dispatch, getState}: MethodFirstParam, num: number) => {
+    update({count: state.count + num })
+  }
+  subtract = ({update, state}: MethodFirstParam, num: number) => update({count: state.count - num })
 }
 
 export default {
