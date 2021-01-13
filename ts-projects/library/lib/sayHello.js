@@ -1,8 +1,8 @@
 'use strict';
 
-function sayHello(text) {
-    if (text === void 0) { text = 'name'; }
-    console.log("hello " + text);
+function sayHello() {
+  var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'name';
+  console.log("hello ".concat(text));
 }
 
 module.exports = sayHello;
