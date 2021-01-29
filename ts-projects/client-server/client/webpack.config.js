@@ -2,8 +2,7 @@ var path = require('path');
 var fs = require('fs');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { port } = require('./config.json')
-
+const {port} = require('./config.json')
 module.exports = {
   devtool: 'sourcemap',
   entry: './src/entry.tsx',
