@@ -11,6 +11,7 @@
         "declaration": true,
         "declarationDir": "lib",
         "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "declarationMap": true
     }
 }

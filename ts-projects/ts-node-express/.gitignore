@@ -1,0 +1,19 @@
+# Build
+public
+build
+dist
+bundle.js
+
+# Dependencies
+node_modules
+/local-chromium
+/puppeteer
+
+# .map
+*.map
+
+# system
+.DS_Store
+
+
+
