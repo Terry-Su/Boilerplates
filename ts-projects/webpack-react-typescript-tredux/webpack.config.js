@@ -2,6 +2,7 @@ var path = require('path');
 var fs = require('fs');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const WriteFilePlugin = require('write-file-webpack-plugin')
 const { port } = require('./config.json')
 
 module.exports = {
@@ -60,6 +61,7 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, 'src/index.html')
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new WriteFilePlugin()
   ]
 }
