@@ -1,4 +1,4 @@
-import { dispatchModelCounter, getModelCounterState, updateModelCounter, useModelCounterState } from '@src/config/model'
+import { dispatchModelCounter, getModelCounterState, updateModelCounter, useModelCounterState } from '@src/models/counter'
 import React, { useEffect } from 'react'
 
 export default function Counter() {

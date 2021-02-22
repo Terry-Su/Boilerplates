@@ -1,4 +1,4 @@
-const files = require.context('.', false, /\.ts$/)
+const files = require.context('.', true, /\.ts$/)
 
 const modules = []
 files.keys().forEach( (key) => {
