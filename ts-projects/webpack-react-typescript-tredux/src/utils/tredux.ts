@@ -51,10 +51,10 @@ export const dispatchModel = (modelName, methodName, ...args) => {
     return new Promise((resolve, reject) => {
       const fn = async () => {
         if (model && model.methods && model.methods[methodName]) {
-          const state = getModelState(model.name);
+          const state = getModelState(model.name)
           const update = (first, second) => {
             let payload
-            if (typeof first === 'object') {
+            if (typeof first === 'object' || typeof first === 'function') {
               payload = [first]
             } else {
               payload = [first, second]
@@ -78,6 +78,7 @@ export const dispatchModel = (modelName, methodName, ...args) => {
 };
 
 /**
+ * 
  *
  * @param {Model} model
  */
@@ -94,6 +95,10 @@ function modelToReducer(model) {
           return { ...state, [key]: value };
         } else if (payload.length === 1) {
           try {
+            if ( typeof payload[0] === 'function' ) {
+              const partial = payload[0](state)
+              return { ...state, ...partial }
+            }
             return { ...state, ...payload[0] };
           } catch (e) {
             console.log(e);
@@ -115,7 +120,7 @@ export const useModelState = <State, StateKey extends keyof State>(modelName: st
 
 export const getModelHelpers = <State, Methods>(modelName: string) => ({
   useModelState: <StateKey extends keyof State>(stateKeys: StateKey[]): {[key in StateKey]: State[key] } => useModelState(modelName, stateKeys),
-  updateModel: (partialState: Partial<State>) => dispatchModel(modelName, 'change', partialState),
+  updateModel: (partialState: Partial<State> | ((state: State) => Partial<State>) ) => dispatchModel(modelName, 'change', partialState),
   dispatchModel: <MethodsKey extends keyof Methods>(methodsName: MethodsKey, ...args: ShiftAction<Parameters<Methods[MethodsKey]>>) => dispatchModel(modelName, methodsName, ...args),
   getModelState: ():State => getModelState(modelName)
 })
@@ -123,7 +128,7 @@ export const getModelHelpers = <State, Methods>(modelName: string) => ({
 
 export type MethodFirstParamFactory<State, Methods> = {
   state: State,
-  update?: (partialState: Partial<State>) => void
+  update?: (partialState: Partial<State> | ((state: State) => Partial<State>) ) => void
   dispatch?: <MethodsKey extends keyof Methods>(methodName: MethodsKey, ...args: ShiftAction<Parameters<Methods[MethodsKey]>>) => void,
   getState: () => State
 }

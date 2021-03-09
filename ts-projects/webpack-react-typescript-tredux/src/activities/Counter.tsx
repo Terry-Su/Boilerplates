@@ -4,7 +4,10 @@ import React, { useEffect } from 'react'
 export default function Counter() {
   const {count} = useModelCounterState(['count'])
   useEffect(() => {
-    updateModelCounter({ count })
+    updateModelCounter(prevState => {
+      return {count: prevState.count + 100}
+    })
+    // updateModelCounter({count: 123})
   }, [])
   return <div>
     <div>Count: {count}</div>

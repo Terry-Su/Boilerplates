@@ -10,7 +10,7 @@ type MethodFirstParam = MethodFirstParamFactory<CounterState, CounterMethods>
 
 export class CounterMethods {
   add = ({update, state, dispatch, getState}: MethodFirstParam, num: number) => {
-    update({count: state.count + num })
+    update(prevState => ({count: prevState.count + 1}))
   }
   subtract = ({update, state}: MethodFirstParam, num: number) => update({count: state.count - num })
 }
