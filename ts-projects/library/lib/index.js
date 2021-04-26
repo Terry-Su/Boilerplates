@@ -6,4 +6,4 @@ var sayHello = require('./sayHello.js');
 
 
 
-exports.sayHello = sayHello;
+exports.sayHello = sayHello['default'];
