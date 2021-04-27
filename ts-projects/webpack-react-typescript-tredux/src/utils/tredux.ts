@@ -5,6 +5,8 @@ let currentModels = [];
 /** @type {import("redux").Store} */
 let currentStore = null;
 
+type ShiftAction<T extends any[]> = ((...args: T) => any) extends ((arg1: any, ...rest: infer R) => any) ? R : never;
+
 export function getCurrentStore() {
   return currentStore;
 }
