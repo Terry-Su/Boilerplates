@@ -120,7 +120,7 @@ export const useModelState = <State, StateKey extends keyof State>(modelName: st
   return res
 })
 
-export const getModelHelpers = <State, Methods extends {[key:string]: () => any}>(modelName: string) => ({
+export const getModelHelpers = <State, Methods extends {[key:string]: any}>(modelName: string) => ({
   useModelState: <StateKey extends keyof State>(stateKeys: StateKey[]): {[key in StateKey]: State[key] } => useModelState(modelName, stateKeys),
   updateModel: (partialState: Partial<State> | ((state: State) => Partial<State>) ) => dispatchModel(modelName, 'change', partialState),
   dispatchModel: <MethodsKey extends keyof Methods>(methodsName: MethodsKey, ...args: ShiftAction<Parameters<Methods[MethodsKey]>>) => dispatchModel(modelName, methodsName, ...args),
