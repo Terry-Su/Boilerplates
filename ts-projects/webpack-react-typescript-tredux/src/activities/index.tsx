@@ -4,8 +4,8 @@ import Loadable from 'react-loadable'
 
 const Loading = () => <div>Loading...</div>
 
-const Home = Loadable({ loader: () => import('./Home'), loading: Loading })
-const DevBook = Loadable({ loader: () => import('@src/components/DevBook'), loading: Loading })
+const Home = Loadable({ loader: () => import(/* webpackChunkName: "Home" */'./Home'), loading: Loading })
+const DevBook = Loadable({ loader: () => import(/* webpackChunkName: "DevBook" */'@src/components/DevBook'), loading: Loading })
 
 export default function Root() {
     return <Router>
