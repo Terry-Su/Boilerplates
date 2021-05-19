@@ -1,4 +1,4 @@
-import { MethodFirstParamFactory, getModelHelpers } from "@src/utils/tredux"
+import { MethodFirstParamFactory, getModelHelpers } from "@tredux/tredux"
 
 export class __Template__State {
   count: number =  0

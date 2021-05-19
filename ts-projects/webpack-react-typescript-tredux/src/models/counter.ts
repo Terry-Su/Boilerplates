@@ -1,7 +1,7 @@
-import { MethodFirstParamFactory, getModelHelpers } from "@src/utils/tredux"
+import { MethodFirstParamFactory, getModelHelpers } from "@tredux/tredux"
 
 export class CounterState {
-  count: number =  0
+  count: number =  3
   name: string = 'Counter'
 }
 

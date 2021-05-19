@@ -8,7 +8,7 @@ export default function Counter() {
       return {count: prevState.count + 100}
     })
     // updateModelCounter({count: 123})
-  }, [])
+  }, ['hot'])
   return <div>
     <div>Count: {count}</div>
     <div>

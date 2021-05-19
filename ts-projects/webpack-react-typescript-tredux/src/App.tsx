@@ -1,9 +1,6 @@
 import React from 'react'
 import Root from './activities'
-import models from './models'
-import { initModels } from './utils/tredux'
-
-const EnhancedProvider = initModels(models)
+import EnhancedProvider from './EnhancedProvider'
 
 export default function App() {
   return <EnhancedProvider >
