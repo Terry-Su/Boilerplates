@@ -26,7 +26,7 @@ export default function DevBook() {
             </div>
           )}
       </div>
-      <div style={{width: 'calc(100% - 200)', height: '100%'}}>
+      <div style={{width: 'calc(100% - 200px)', height: '100%'}}>
         {TestingComponent && <TestingComponent />}
       </div>
     </div>
