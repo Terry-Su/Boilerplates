@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react'
 
 const componentInfos = [
-  { label: '', Component: null },
   { label: 'a', Component: () => <div>Test1</div> },
   { label: 'b', Component: () => <div>Test2</div> },
 ]
