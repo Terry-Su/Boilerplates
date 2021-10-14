@@ -1,4 +1,4 @@
-import Counter from '@src/components/Counter'
+import Counter from '@src/activities/Home/Counter'
 import React from 'react'
 
 export default function Home() {

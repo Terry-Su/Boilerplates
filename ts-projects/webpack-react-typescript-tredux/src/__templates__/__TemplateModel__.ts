@@ -1,36 +1,24 @@
 import { getModelHelpers } from "@tredux/tredux"
 
-const MCounter = 'counter'
-const helper = getModelHelpers<CounterState, CounterMethods>(MCounter)
-export const { useModelState: umsCounter, updateModel: umCounter, dispatchModel: dmCounter, getModelState: gmsCounter } = helper
+const M__Templae__ = '__Template__'
+const helper = getModelHelpers<__Templae__State, __Templae__Methods>(M__Templae__)
+export const { useModelState: ums__Templae__, updateModel: um__Templae__, dispatchModel: dm__Templae__, getModelState: gms__Templae__ } = helper
 const { updateModel: update,  dispatchModel: dispatch, getModelState: getState } = helper
 
 
-class CounterState {
-  count: number =  0
-  name: string = 'Counter'
+class __Templae__State {
 }
 
 
-class CounterMethods {
-  run = async () => {
-    update({count: getState().count + 1})
-    dmCounter('add', 1)
-    await dispatch('delayAdd', 1000, 1)
-    const currentCount = getState().count
-  }
-  add = (_, num: number = 1) => {
-    update({ count: getState().count + num })
-  }
-  delayAdd = async (_, duration: number, num: number) => {
-    await new Promise(resolve => setTimeout(resolve, duration))
-    dispatch('add', num)
+class __Templae__Methods {
+  test = async (_, first: string) => {
+    console.log( _, first )
   }
 }
 
 
 export default {
-  name: MCounter,
-  state: new CounterState(),
-  methods: new CounterMethods()
+  name: M__Templae__,
+  state: new __Templae__State(),
+  methods: new __Templae__Methods()
 }

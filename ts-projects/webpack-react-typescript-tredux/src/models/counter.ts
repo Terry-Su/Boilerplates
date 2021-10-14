@@ -1,30 +1,27 @@
-import { MethodFirstParamFactory, getModelHelpers } from "@tredux/tredux"
+import { getModelHelpers } from "@tredux/tredux"
 
-export class CounterState {
-  count: number =  3
+const MCounter = 'counter'
+const helper = getModelHelpers<CounterState, CounterMethods>(MCounter)
+export const { useModelState: umsCounter, updateModel: umCounter, dispatchModel: dmCounter, getModelState: gmsCounter } = helper
+const { updateModel: update,  dispatchModel: dispatch, getModelState: getState } = helper
+
+
+class CounterState {
+  count: number =  0
   name: string = 'Counter'
 }
 
-type MethodFirstParam = MethodFirstParamFactory<CounterState, CounterMethods>
 
-export class CounterMethods {
-  add = ({update, state, dispatch, getState}: MethodFirstParam, num: number) => {
+class CounterMethods {
+  add = (_, num: number) => {
     update(prevState => ({count: prevState.count + 1}))
   }
-  subtract = ({update, state}: MethodFirstParam, num: number) => update({count: state.count - num })
+  subtract = (_, num: number) => update({count: getState().count - num })
 }
 
 
-export const ModelCounter = 'counter'
-const helper = getModelHelpers<CounterState, CounterMethods>(ModelCounter)
-export const useModelCounterState = helper.useModelState
-export const updateModelCounter = helper.updateModel
-export const dispatchModelCounter = helper.dispatchModel
-export const getModelCounterState = helper.getModelState
-
 export default {
-  name: ModelCounter,
+  name: MCounter,
   state: new CounterState(),
   methods: new CounterMethods()
 }
-
