@@ -1,27 +1,36 @@
-import { MethodFirstParamFactory, getModelHelpers } from "@tredux/tredux"
+import { getModelHelpers } from "@tredux/tredux"
 
-export class __Template__State {
+const MCounter = 'counter'
+const helper = getModelHelpers<CounterState, CounterMethods>(MCounter)
+export const { useModelState: umsCounter, updateModel: umCounter, dispatchModel: dmCounter, getModelState: gmsCounter } = helper
+const { updateModel: update,  dispatchModel: dispatch, getModelState: getState } = helper
+
+
+class CounterState {
   count: number =  0
-  name: string = '__Template__'
+  name: string = 'Counter'
 }
 
-type MethodFirstParam = MethodFirstParamFactory<__Template__State, __Template__Methods>
 
-export class __Template__Methods {
-  __templateMethod__ = ({update, state, dispatch, getState}: MethodFirstParam) => {
+class CounterMethods {
+  run = async () => {
+    update({count: getState().count + 1})
+    dmCounter('add', 1)
+    await dispatch('delayAdd', 1000, 1)
+    const currentCount = getState().count
+  }
+  add = (_, num: number = 1) => {
+    update({ count: getState().count + num })
+  }
+  delayAdd = async (_, duration: number, num: number) => {
+    await new Promise(resolve => setTimeout(resolve, duration))
+    dispatch('add', num)
   }
 }
 
 
-export const Model__Template__ = '__template__'
-const helper = getModelHelpers<__Template__State, __Template__Methods>(Model__Template__)
-export const useModel__Template__State = helper.useModelState
-export const updateModel__Template__ = helper.updateModel
-export const dispatchModel__Template__ = helper.dispatchModel
-export const getModel__Template__State = helper.getModelState
-
 export default {
-  name: Model__Template__,
-  state: new __Template__State(),
-  methods: new __Template__Methods()
+  name: MCounter,
+  state: new CounterState(),
+  methods: new CounterMethods()
 }

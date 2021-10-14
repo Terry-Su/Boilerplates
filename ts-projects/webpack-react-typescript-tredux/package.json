@@ -17,7 +17,7 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.12.7",
-    "@tredux/tredux": "^0.0.6",
+    "@tredux/tredux": "^1.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-redux": "^7.1.15",
