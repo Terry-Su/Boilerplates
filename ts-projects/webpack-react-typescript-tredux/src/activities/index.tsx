@@ -8,10 +8,10 @@ const Home = Loadable({ loader: () => import(/* webpackChunkName: "Home" */'./Ho
 const DevBook = Loadable({ loader: () => import(/* webpackChunkName: "DevBook" */'@src/components/DevBook'), loading: Loading })
 
 export default function Root() {
-    return <Router>
-      <Switch>
-        <Route path="/" exact><Home /></Route>
-        <Route path="/dev-book" exact><DevBook /></Route>
-      </Switch>
-    </Router>
+  return <Router>
+    <Switch>
+      <Route path="/" exact><Home /></Route>
+      <Route path="/dev-book" exact><DevBook /></Route>
+    </Switch>
+  </Router>
 }
