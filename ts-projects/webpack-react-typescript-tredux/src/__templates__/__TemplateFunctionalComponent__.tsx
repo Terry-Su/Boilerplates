@@ -1,5 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
 
 export default function Template() {
-  return <div>Template</div>
+  return <StyledRoot>Template</StyledRoot>
 }
+
+const StyledRoot = styled.div`
+
+`
