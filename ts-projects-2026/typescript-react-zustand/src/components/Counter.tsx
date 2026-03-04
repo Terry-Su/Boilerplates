@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useCounterStore } from '../store/counterStore';
+import { usePersonStore } from '../store/personStore';
+import { useEffect } from 'react';
 
 interface Todo {
   id: number;
@@ -8,7 +10,16 @@ interface Todo {
 }
 
 export function Counter() {
-  const { count, increment, decrement, reset } = useCounterStore();
+  // const { count, increment } = useCounterStore();
+  const counterStore = useCounterStore();
+  const { count, increment } = counterStore
+  const { ...personStore } = usePersonStore()
+  useEffect(() => {
+    // increment()
+    personStore.say([counterStore])
+  }, [])
+  
+  
 
   const fetchTodo = async () => {
     try {
@@ -27,9 +38,7 @@ export function Counter() {
       <h2>Zustand Counter Example</h2>
       <p style={{ fontSize: '3rem', margin: '1rem 0' }}>{count}</p>
       <div className='flex'>
-        <button onClick={decrement}>-</button>
         <button onClick={increment}>+</button>
-        <button onClick={reset}>Reset</button>
       </div>
       <div style={{ marginTop: '1rem' }}>
         <button onClick={fetchTodo}>Fetch Todo (Axios Demo)</button>
