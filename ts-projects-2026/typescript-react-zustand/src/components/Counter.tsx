@@ -13,10 +13,10 @@ export function Counter() {
   // const { count, increment } = useCounterStore();
   const counterStore = useCounterStore();
   const { count, increment } = counterStore
-  const { ...personStore } = usePersonStore()
+  const personStore = usePersonStore()
   useEffect(() => {
     // increment()
-    personStore.say([counterStore])
+    personStore.say({counterStore, personStore})
   }, [])
   
   

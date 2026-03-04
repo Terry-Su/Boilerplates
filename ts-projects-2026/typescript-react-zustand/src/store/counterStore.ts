@@ -15,3 +15,5 @@ const fn = (setAlias: any, getAlias: any) => {
 
 export const useCounterStore = getUseModelStore(fn);
 export type CounterStore = ReturnType<typeof fn>; 
+export type CounterStoreWrap = {counterStore: CounterStore}
+

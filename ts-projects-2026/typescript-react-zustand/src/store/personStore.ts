@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 import type { GetGetType, GetSetType } from '../types/store';
 import { getUseModelStore } from '../utils/store';
-import { useCounterStore, type CounterStore } from './counterStore';
 import type { PartialStoreMap } from '.';
+import type { CounterStoreWrap } from './counterStore';
 
 
 const fn = (setAlias: any, getAlias: any) => {
@@ -11,9 +11,10 @@ const fn = (setAlias: any, getAlias: any) => {
   class ModelStore {
     name = "foo"
 
-    say = ([counterStore]:[CounterStore]) => {
+    say = ({counterStore, personStore}:CounterStoreWrap&PersonStoreWrap) => {
         console.log("counterStore", counterStore)
-        console.log(`${get().name} say: current count is ${counterStore.count}`)
+        console.log("personStore", personStore)
+        console.log(`${personStore.name} say: current count is ${counterStore.count}`)
     }
   }
   return new ModelStore()
@@ -21,3 +22,4 @@ const fn = (setAlias: any, getAlias: any) => {
 
 export const usePersonStore = getUseModelStore(fn);
 export type PersonStore = ReturnType<typeof fn>;
+export type PersonStoreWrap = {personStore: PersonStore}
