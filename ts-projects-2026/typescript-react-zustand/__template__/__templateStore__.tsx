@@ -12,3 +12,4 @@ const fn = (setAlias: any, getAlias: any) => {
 }
 export const use__Template__Store = getUseModelStore(fn);
 export type __Template__Store = ReturnType<typeof fn>;
+export type PersonStoreWrap = {__template__: __Template__Store}
